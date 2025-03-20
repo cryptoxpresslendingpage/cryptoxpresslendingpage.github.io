@@ -132,4 +132,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Вызываем функцию при загрузке страницы
     setDarkThemeAsDefault();
+
+    // Добавляем обработчик для отображения плашки с предупреждением
+    // Проверяем, существует ли плашка на странице
+    const disclaimer = document.querySelector('.content-disclaimer');
+    if (disclaimer) {
+        // Убедимся, что плашка видима
+        disclaimer.style.display = 'block';
+        disclaimer.style.opacity = '1';
+        disclaimer.style.visibility = 'visible';
+        
+        // Добавляем класс для анимации появления
+        setTimeout(() => {
+            disclaimer.classList.add('active');
+        }, 500);
+    }
 }); 

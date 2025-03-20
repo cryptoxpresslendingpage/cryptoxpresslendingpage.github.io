@@ -121,4 +121,25 @@ document.addEventListener('DOMContentLoaded', function() {
             logo.style.filter = 'drop-shadow(0 10px 20px rgba(24, 68, 141, 0.2))';
         });
     }
+
+    // Добавляем обработчик для анимации плашки с предупреждением
+    const disclaimer = document.querySelector('.content-disclaimer');
+    if (disclaimer) {
+        // Добавляем класс для анимации появления
+        disclaimer.classList.add('reveal');
+        
+        // Наблюдатель для анимации при прокрутке
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        observer.observe(disclaimer);
+    }
 }); 
