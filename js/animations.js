@@ -142,4 +142,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         observer.observe(disclaimer);
     }
+
+    // Анимация прогресс-баров кармы
+    const karmaLevels = document.querySelectorAll('.karma-level');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    karmaLevels.forEach(level => {
+        observer.observe(level);
+    });
 }); 
